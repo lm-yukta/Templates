@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket Stats</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-image: url("./Cricket_BGT_Demo.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+      }
+      .score-board {
+        padding: 30px;
+        border-radius: 10px;
+        width: 70%;
+        /* background-color: rgba(0, 0, 0, 0.8);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); */
+      }
+      h1,
+      h2 {
+        color: #ffcc00;
+      }
+      .match {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 40px;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        position: relative;
+        right: 18rem;
+      }
+      .match h2 {
+        margin-bottom: 20px;
+      }
+      .stats {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      .stat {
+        background-color: #333;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 8px;
+        flex: 1 1 40%;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      .stat h3 {
+        color: #ffcc00;
+        margin-bottom: 10px;
+      }
+      .stat p {
+        color: white;
+        font-size: 16px;
+      }
+      .icon {
+        margin-right: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="score-board">
+      <h1><i class="fas fa-cricket-ball icon"></i> Cricket Scoreboard</h1>
+      <div id="matches"></div>
+    </div>
+
+    <script>
+      const data = {
+        5711: {
+          id: "5711",
+          name: "National Super League 4-Day Tournament - Test",
+          batsmanstats: {
+            batsman_0: { batsmanname: "RK Chandraguptha", run: "83" },
+            batsman_1: { batsmanname: "KPNM Karunanayake", run: "61" },
+          },
+          bowlerstats: {
+            bowler: "Nuwanidu Fernando",
+            o: "3",
+            m: "1",
+            r: "3",
+            w: "0",
+          },
+        },
+        // Additional matches can be added here
+      };
+
+      function createStats(match, container) {
+        const matchDiv = document.createElement("div");
+        matchDiv.classList.add("match");
+
+        const matchTitle = document.createElement("h2");
+        matchTitle.textContent = match.name;
+        matchDiv.appendChild(matchTitle);
+
+        // Batsman Stats
+        const batsmanStatsDiv = document.createElement("div");
+        batsmanStatsDiv.classList.add("stats");
+        Object.keys(match.batsmanstats)
+          .filter((key) => key.startsWith("batsman_"))
+          .forEach((key) => {
+            const statDiv = document.createElement("div");
+            statDiv.classList.add("stat");
+            statDiv.innerHTML = `
+              <h3><i class="fas fa-user icon"></i>${match.batsmanstats[key].batsmanname}</h3>
+              <p><i class="fas fa-chart-line icon"></i>Runs: ${match.batsmanstats[key].run}</p>
+            `;
+            batsmanStatsDiv.appendChild(statDiv);
+          });
+        matchDiv.appendChild(batsmanStatsDiv);
+
+        // Bowler Stats
+        const bowlerStatDiv = document.createElement("div");
+        bowlerStatDiv.classList.add("stat");
+        bowlerStatDiv.innerHTML = `
+          <h3><i class="fas fa-bowling-ball icon"></i>${match.bowlerstats.bowler}</h3>
+          <p><i class="fas fa-stopwatch icon"></i>Overs: ${match.bowlerstats.o}</p>
+          <p><i class="fas fa-stopwatch icon"></i>Maidens: ${match.bowlerstats.m}</p>
+          <p><i class="fas fa-trophy icon"></i>Runs: ${match.bowlerstats.r}</p>
+          <p><i class="fas fa-skull-crossbones icon"></i>Wickets: ${match.bowlerstats.w}</p>
+        `;
+        matchDiv.appendChild(bowlerStatDiv);
+
+        container.appendChild(matchDiv);
+      }
+
+      const matchesContainer = document.getElementById("matches");
+      Object.values(data).forEach((match) =>
+        createStats(match, matchesContainer)
+      );
+    </script>
+  </body>
+</html>

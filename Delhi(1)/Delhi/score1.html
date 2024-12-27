@@ -1,0 +1,580 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket Stats Table</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-image: url("./Cricket_BGT_Demo.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+      }
+      .score-board {
+        position: relative;
+        top: 5rem;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        border-radius: 15px;
+        width: 80%;
+        margin: auto;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+      }
+      h1 {
+        text-align: center;
+        color: #ffcc00;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      th,
+      td {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 15px;
+        text-align: center;
+        font-size: 1.1rem;
+      }
+      th {
+        background-color: #333;
+        color: #ffcc00;
+        text-transform: uppercase;
+      }
+      tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      tr:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+      }
+      .icon {
+        margin-right: 10px;
+      }
+      .highlight {
+        font-weight: bold;
+        color: #ff5733;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1rem;
+        color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="score-board">
+      <h1><i class="fas fa-cricket-ball"></i> Cricket Scoreboard</h1>
+
+      <h2>Batsman Stats</h2>
+      <table id="batsman-table">
+        <thead>
+          <tr>
+            <th><i class="fas fa-user icon"></i>Batsman Name</th>
+            <th><i class="fas fa-chart-line icon"></i>Runs</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <h2>Bowler Stats</h2>
+      <table id="bowler-table">
+        <thead>
+          <tr>
+            <th><i class="fas fa-user icon"></i>Bowler Name</th>
+            <th><i class="fas fa-bowling-ball icon"></i>Overs</th>
+            <th><i class="fas fa-star icon"></i>Maidens</th>
+            <th><i class="fas fa-trophy icon"></i>Runs</th>
+            <th><i class="fas fa-skull-crossbones icon"></i>Wickets</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div class="footer">
+        Tournament: <span class="highlight">Koshi Province Trophy</span>
+      </div>
+    </div>
+
+    <script>
+      const data = {
+        id: "7049",
+        name: "Koshi Province Trophy (KPT) National T20 Cricket Tournament - T20",
+        batsmanstats: {
+          batsman_0: {
+            batsmanname: "Rohan Bk",
+            run: "5",
+          },
+          batsman_1: {
+            batsmanname: "D Nath",
+            run: "2",
+          },
+        },
+        bowlerstats: {
+          bowler: "Dipesh Shrestha",
+          o: "0.4",
+          m: "0",
+          r: "8",
+          w: "0",
+        },
+      };
+
+      function populateTable() {
+        // Populate Batsman Table
+        const batsmanTableBody = document.querySelector("#batsman-table tbody");
+        const batsmanStats = data.batsmanstats;
+
+        Object.keys(batsmanStats).forEach((key) => {
+          if (key.startsWith("batsman_")) {
+            const row = document.createElement("tr");
+
+            const batsmanNameCell = document.createElement("td");
+            batsmanNameCell.innerHTML = `<i class='fas fa-user'></i> ${batsmanStats[key].batsmanname}`;
+
+            const batsmanRunCell = document.createElement("td");
+            batsmanRunCell.innerHTML = `<i class='fas fa-chart-line'></i> ${batsmanStats[key].run}`;
+
+            row.appendChild(batsmanNameCell);
+            row.appendChild(batsmanRunCell);
+            batsmanTableBody.appendChild(row);
+          }
+        });
+
+        // Populate Bowler Table
+        const bowlerTableBody = document.querySelector("#bowler-table tbody");
+        const bowlerStats = data.bowlerstats;
+
+        const row = document.createElement("tr");
+
+        const bowlerNameCell = document.createElement("td");
+        bowlerNameCell.innerHTML = `<i class='fas fa-user'></i> ${bowlerStats.bowler}`;
+
+        const bowlerOversCell = document.createElement("td");
+        bowlerOversCell.innerHTML = `<i class='fas fa-bowling-ball'></i> ${bowlerStats.o}`;
+
+        const bowlerMaidensCell = document.createElement("td");
+        bowlerMaidensCell.innerHTML = `<i class='fas fa-star'></i> ${bowlerStats.m}`;
+
+        const bowlerRunsCell = document.createElement("td");
+        bowlerRunsCell.innerHTML = `<i class='fas fa-trophy'></i> ${bowlerStats.r}`;
+
+        const bowlerWicketsCell = document.createElement("td");
+        bowlerWicketsCell.innerHTML = `<i class='fas fa-skull-crossbones'></i> ${bowlerStats.w}`;
+
+        row.appendChild(bowlerNameCell);
+        row.appendChild(bowlerOversCell);
+        row.appendChild(bowlerMaidensCell);
+        row.appendChild(bowlerRunsCell);
+        row.appendChild(bowlerWicketsCell);
+        bowlerTableBody.appendChild(row);
+      }
+
+      populateTable();
+    </script>
+  </body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket Stats</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-image: url("./Cricket_BGT_Demo.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+        overflow: hidden;
+      }
+      .score-board {
+        padding: 30px;
+        border-radius: 10px;
+        width: 70%;
+        position: relative;
+        right: 16%;
+        top: 21%;
+        /* background-color: rgba(0, 0, 0, 0.8); */
+        /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); */
+      }
+      h1,
+      h2 {
+        color: #ffcc00;
+      }
+      .match {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 40px;
+        /* background-color: rgba(0, 0, 0, 0.7); */
+        padding: 20px;
+        border-radius: 10px;
+        width: 60%;
+      }
+      .match h2 {
+        margin-bottom: 20px;
+      }
+      .stats {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      .stat {
+        background-color: #333;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 8px;
+        flex: 1 1 40%;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      .stat h3 {
+        color: #ffcc00;
+        margin-bottom: 10px;
+      }
+      .stat p {
+        color: white;
+        font-size: 16px;
+      }
+      .icon {
+        margin-right: 8px;
+      }
+      .subconatiner {
+        /* background-color: #1a1a1a; */
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%; /* Ensure the container spans the full width */
+      }
+
+      .team-name {
+        /* background-color: #fff; */
+        color: #fff;
+        /* padding: 10px 20px; */
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 3vh;
+        text-align: center; /* Centers the text horizontally */
+        flex: 1; /* Allow the team name containers to grow and shrink */
+      }
+
+      .vs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10rem;
+      }
+
+      .vs img {
+        width: 100%; /* Ensures the image stays within the container */
+        height: auto; /* Keeps the aspect ratio of the image */
+        max-width: 10rem; /* Ensures the image does not grow larger than 10rem */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="score-board">
+
+      <div class="match">
+        <div style="margin-bottom: 10px; position: relative">
+          <div class="subconatiner">
+            <div class="team-name">
+              <h3>Mumbai Indians</h3>
+            </div>
+            <div
+              class="vs"
+              style="width: 10rem; position: relative; bottom: 6px"
+            >
+              <img alt="img" src="./VS1-Photoroom.png" />
+            </div>
+            <div class="team-name">
+              <h3>Chennai Superking</h3>
+            </div>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <h3><i class="fas fa-user icon"></i> RK Chandraguptha</h3>
+            <p><i class="fas fa-chart-line icon"></i> Runs: 83</p>
+          </div>
+          <div class="stat">
+            <h3><i class="fas fa-user icon"></i> KPNM Karunanayake</h3>
+            <p><i class="fas fa-chart-line icon"></i> Runs: 61</p>
+          </div>
+        </div>
+        <div class="stat">
+          <h3><i class="fas fa-bowling-ball icon"></i> Nuwanidu Fernando</h3>
+          <p><i class="fas fa-stopwatch icon"></i> Overs: 3</p>
+          <p><i class="fas fa-stopwatch icon"></i> Maidens: 1</p>
+          <p><i class="fas fa-trophy icon"></i> Runs: 3</p>
+          <p><i class="fas fa-skull-crossbones icon"></i> Wickets: 0</p>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket Stats</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-image: url("./Cricket_BGT_Demo.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .score-board {
+        /* padding: 30px; */
+        border-radius: 15px;
+        width: 70%;
+        position: fixed;
+        left: 20px;
+        top: 40%;
+        /* background-color: #333; Removed transparency */
+        /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); */
+      }
+
+      h1,
+      h2 {
+        color: #ffcc00;
+      }
+
+      .match {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 40px;
+        /* padding: 20px; */
+        border-radius: 10px;
+        /* background-color: rgba(0, 0, 0, 0.8); */
+      }
+
+      .match h2 {
+        margin-bottom: 20px;
+      }
+
+      .stats {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        width: 58%;
+      }
+
+      .stat {
+        background-color: #444;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 8px;
+        flex: 1 1 40%;
+        text-align: center;
+        width: 57%;
+        /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); */
+      }
+
+      .stat h3 {
+        color: #ffcc00;
+        margin-bottom: 10px;
+      }
+
+      .stat p {
+        color: white;
+        font-size: 16px;
+      }
+
+      .icon {
+        margin-right: 8px;
+      }
+
+      .subconatiner {
+        /* padding: 20px; */
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 68%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .team-name {
+        color: #fff;
+        font-weight: bold;
+        font-size: 3vh;
+        text-align: center;
+        flex: 1;
+      }
+
+      .vs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10rem;
+      }
+
+      .vs img {
+        width: 100%;
+        height: auto;
+        max-width: 10rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="score-board">
+      <!-- Match 1 -->
+      <div class="match">
+        <div class="subconatiner">
+          <div class="team-name">
+            <h3>Mumbai Indians</h3>
+          </div>
+          <div class="vs">
+            <img alt="img" src="./VS1-Photoroom.png" />
+          </div>
+          <div class="team-name">
+            <h3>Chennai Superking</h3>
+          </div>
+        </div>
+
+        <div class="stat">
+          <h3><i class="fas fa-bowling-ball icon"></i> Bowler Stats</h3>
+          <table
+            style="
+              width: 100%;
+              border-collapse: collapse;
+              background-color: #2a2a2a;
+              color: white;
+              border-radius: 8px;
+              overflow: hidden;
+            "
+          >
+            <thead>
+              <tr style="background-color: #1a1a1a">
+                <th
+                  style="
+                    padding: 12px;
+                    text-align: left;
+                    font-size: 1.2em;
+                    color: #ffcc00;
+                  "
+                >
+                  Bowler
+                </th>
+                <th
+                  style="
+                    padding: 12px;
+                    text-align: left;
+                    font-size: 1.2em;
+                    color: #ffcc00;
+                  "
+                >
+                  Team
+                </th>
+                <th
+                  style="
+                    padding: 12px;
+                    text-align: left;
+                    font-size: 1.2em;
+                    color: #ffcc00;
+                  "
+                >
+                  Overs
+                </th>
+                <th
+                  style="
+                    padding: 12px;
+                    text-align: left;
+                    font-size: 1.2em;
+                    color: #ffcc00;
+                  "
+                >
+                  Maidens
+                </th>
+                <th
+                  style="
+                    padding: 12px;
+                    text-align: left;
+                    font-size: 1.2em;
+                    color: #ffcc00;
+                  "
+                >
+                  Runs
+                </th>
+                <th
+                  style="
+                    padding: 12px;
+                    text-align: left;
+                    font-size: 1.2em;
+                    color: #ffcc00;
+                  "
+                >
+                  Wickets
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background-color: #333">
+                <td style="padding: 10px">Nuwanidu Fernando</td>
+                <td style="padding: 10px">Colombo</td>
+                <td style="padding: 10px">3</td>
+                <td style="padding: 10px">1</td>
+                <td style="padding: 10px">3</td>
+                <td style="padding: 10px">0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <h3><i class="fas fa-user icon"></i> RK Chandraguptha</h3>
+            <p><i class="fas fa-chart-line icon"></i> Runs: 83</p>
+          </div>
+          <div class="stat">
+            <h3><i class="fas fa-user icon"></i> KPNM Karunanayake</h3>
+            <p><i class="fas fa-chart-line icon"></i> Runs: 61</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

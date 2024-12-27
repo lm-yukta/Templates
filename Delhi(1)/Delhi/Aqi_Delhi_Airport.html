@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            color: #090909;
+            font-family: arboria, sans-serif;
+            ;
+            font-style: normal;
+            font-weight: 500;
+        }
+        .bgImage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        .Delhi {
+            display: table-row;
+            width: 8vw;
+            justify-content: left;
+            position: absolute;
+            top: 40.5vh;
+            left: 21.3vw;
+            box-sizing: border-box;
+            font-size: 21.5vh;
+            font-weight: 900;
+            text-align: left;
+        }
+        .newAqi{
+            display: table-row;
+
+        }
+        .below100{
+            width: 50vh;
+            height: 50vh;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="./aqi.jpg" class="bgImage" />
+    </div>
+    <div class="Delhi" id="delhi">
+        <div></div>
+    </div>
+    <!-- <div class="newAqi">
+        <img src="./1-100.jpg" class="below100"/>
+    </div> -->
+    <script>
+        var apiResponse = []
+        function processData(response) {  
+            apiResponse = response;
+            renderTag("New Delhi", "delhi");
+        }
+        function renderTag(city, tagId) {
+            let dtag = document.getElementById(tagId)
+            dtag.innerHTML = apiResponse && apiResponse.aqi ? apiResponse.aqi : ""
+        }
+        function getcityobj(city) {
+            console.log(apiResponse)
+            let obj = apiResponse.filter(function (item) {
+                return item && item["cityName"] == city;
+            })[0];
+            console.log(obj)
+            return obj;
+        }
+        function fetchData() {
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    processData(JSON.parse(this.responseText));
+                }
+            };
+            //const URL = './data.json';
+            const URL = 'https://sandbox.lemmatechnologies.com/media/delhi_aqi/Delhi/aqi_v2.json';
+            request.open('GET',
+                URL + '?ts=' + new Date().getTime(),
+                true);
+            request.send();
+        }
+        fetchData()
+    </script>
+</body>
+</html>
