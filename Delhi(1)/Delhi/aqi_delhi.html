@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Background Image Screen</title>
+  <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body and HTML */
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden; /* Ensures no scrollbars */
+    }
+
+    /* Background Image */
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('./101-onwards.jpg'); 
+      background-size: cover; 
+      background-position: center; 
+      background-repeat: no-repeat; 
+    }
+
+    /* Optional: Overlay content */
+    .content {
+      position: absolute;
+      top: 40%;
+      left: 48%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 10vh;
+      font-weight: 900;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Responsive Text Adjustments */
+    @media screen and (min-width: 2160px) {
+        .content {
+          position: absolute;
+          top: 40%;
+          left: 49%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+          color: white;
+          font-family: Arial, sans-serif;
+          font-size: 10.5vh;
+          font-weight: 900;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); 
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="content"  id="delhi">
+  </div>
+  <script>
+    var apiResponse = []
+    function processData(response) {  
+        apiResponse = response;
+        renderTag("New Delhi", "delhi");
+    }
+    function renderTag(city, tagId) {
+        let dtag = document.getElementById(tagId)
+        dtag.innerHTML = apiResponse && apiResponse.aqi ? apiResponse.aqi : ""
+    }
+    function getcityobj(city) {
+        console.log(apiResponse)
+        let obj = apiResponse.filter(function (item) {
+            return item && item["cityName"] == city;
+        })[0];
+        console.log(obj)
+        return obj;
+    }
+    function fetchData() {
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                processData(JSON.parse(this.responseText));
+            }
+        };
+        //const URL = './data.json';
+        const URL = 'https://sandbox.lemmatechnologies.com/media/delhi_aqi/Delhi/aqi_v2.json';
+        request.open('GET',
+            URL + '?ts=' + new Date().getTime(),
+            true);
+        request.send();
+    }
+    fetchData()
+</script>
+</body>
+</html>
+

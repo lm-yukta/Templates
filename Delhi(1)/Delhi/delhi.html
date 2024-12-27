@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Background Image Screen</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden; 
+      font-family: arboria, sans-serif;
+    }
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('./1-100.jpg'); 
+      background-size: cover; 
+      background-position: center; 
+      background-repeat: no-repeat; 
+      transition: background-image 0.5s ease; 
+    }
+    .content{
+      position: absolute;
+      top: 34%;
+      left: 35%;
+      text-align: center;
+      color: white;
+      font-size: 9vh;
+      font-weight: bold;
+      text-shadow: 3px 6px 4px rgb(4 4 4 / 77%);;
+      transform: scaleY(1.4);
+    }
+    @media screen and (min-width: 2160px) {
+      .content {
+        position: absolute;
+        top:34%;
+        left: 35%;
+        text-align: center;
+        color: white;
+        font-size: 9vh;
+        font-weight: bold;
+        text-shadow: 6px 12px 8px rgb(4 4 4 / 77%); 
+        transform: scaleY(1.4); 
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <div class="background" id="background"></div>
+  <div class="content" id="delhi"></div>
+  <script>
+    var apiResponse = [];
+
+    function processData(response) {  
+        apiResponse = response;
+        renderTag("New Delhi", "delhi");
+    }
+
+    function renderTag(city, tagId) {
+        let dtag = document.getElementById(tagId);
+        let aqiValue = apiResponse && apiResponse.aqi ? apiResponse.aqi : "";
+
+        dtag.innerHTML = aqiValue; 
+        updateBackground(parseInt(aqiValue));
+    }
+
+    function updateBackground(aqi) {
+        const backgroundDiv = document.getElementById('background');
+        if (aqi > 100) {
+            backgroundDiv.style.backgroundImage = "url('./101-onwards.jpg')";
+        } else {
+            backgroundDiv.style.backgroundImage = "url('./1-100.jpg')";
+        }
+    }
+
+    function fetchData() {
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                processData(JSON.parse(this.responseText));
+            }
+        };
+
+        const URL = 'https://sandbox.lemmatechnologies.com/media/delhi_aqi/Delhi/aqi_v2.json';
+        request.open('GET', URL + '?ts=' + new Date().getTime(), true);
+        request.send();
+    }
+
+    fetchData();
+  </script>
+</body>
+</html>

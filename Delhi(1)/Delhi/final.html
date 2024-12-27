@@ -1,0 +1,423 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket Stats</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-image: url("./Cricket_BGT_Demo.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .score-board {
+        border-radius: 15px;
+        width: 43%;
+        position: fixed;
+        left: 20px;
+        top: 35%;
+      }
+
+      h1,
+      h2 {
+        color: #ffcc00;
+      }
+
+      .match {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 40px;
+        border-radius: 10px;
+      }
+
+      .match h2 {
+        margin-bottom: 20px;
+      }
+
+      .subconatiner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      .team-name {
+        color: #fff;
+        font-weight: bold;
+        font-size: 3vh;
+        text-align: center;
+        flex: 1;
+      }
+
+      .vs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10rem;
+      }
+
+      .vs img {
+        width: 100%;
+        height: auto;
+        max-width: 10rem;
+      }
+
+      .stat-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #2a2a2a;
+        color: white;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .stat-table th,
+      .stat-table td {
+        padding: 12px;
+        text-align: left;
+        font-size: 1.2em;
+      }
+
+      .stat-table th {
+        background-color: #1a1a1a;
+        color: #ffcc00;
+      }
+
+      .stat-table tr:nth-child(even) {
+        background-color: #333;
+      }
+
+      .stat {
+        background-color: #444;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 8px;
+        flex: 1 1 40%;
+        text-align: center;
+      }
+
+      .stat h3 {
+        color: #ffcc00;
+        margin-bottom: 10px;
+      }
+
+      .stat p {
+        color: white;
+        font-size: 16px;
+      }
+
+      .icon {
+        margin-right: 8px;
+      }
+      .stats {
+        width: auto;
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="score-board">
+      <div class="match">
+        <div class="subconatiner">
+          <div class="team-name">
+            <h3>Colombo</h3>
+          </div>
+          <div class="vs">
+            <img alt="VS" src="./VS1-Photoroom.png" />
+          </div>
+          <div class="team-name">
+            <h3>Jaffna</h3>
+          </div>
+        </div>
+
+        <div class="stat">
+          <h3><i class="fas fa-bowling-ball icon"></i> Bowler Stats</h3>
+          <table class="stat-table">
+            <thead>
+              <tr>
+                <th>Bowler</th>
+                <th>Team</th>
+                <th>Overs</th>
+                <th>Maidens</th>
+                <th>Runs</th>
+                <th>Wickets</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nuwanidu Fernando</td>
+                <td>Colombo</td>
+                <td>3</td>
+                <td>1</td>
+                <td>3</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <h3><i class="fas fa-user icon"></i> RK Chandraguptha</h3>
+            <p><i class="fas fa-chart-line icon"></i> Runs: 83</p>
+          </div>
+          <div class="stat">
+            <h3><i class="fas fa-user icon"></i> KPNM Karunanayake</h3>
+            <p><i class="fas fa-chart-line icon"></i> Runs: 61</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket Stats</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Your existing CSS remains unchanged */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-image: url("./Cricket_BGT_Demo.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+        overflow: hidden;
+      }
+      .score-board {
+        border-radius: 15px;
+        width: 43%;
+        position: fixed;
+        left: 20px;
+        top: 35%;
+      }
+      h1,
+      h2 {
+        color: #ffcc00;
+      }
+      .match {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 40px;
+        border-radius: 10px;
+      }
+      .match h2 {
+        margin-bottom: 20px;
+      }
+      .subconatiner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 116%;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 10px;
+      }
+      .team-name {
+        color: #fff;
+        font-weight: bold;
+        font-size: 3vh;
+        text-align: center;
+        flex: 1;
+      }
+      .vs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10rem;
+      }
+      .vs img {
+        width: 100%;
+        height: auto;
+        max-width: 10rem;
+      }
+      .stat-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #2a2a2a;
+        color: white;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .stat-table th,
+      .stat-table td {
+        padding: 12px;
+        text-align: left;
+        font-size: 1.2em;
+      }
+      .stat-table th {
+        background-color: #1a1a1a;
+        color: #ffcc00;
+      }
+      .stat-table tr:nth-child(even) {
+        background-color: #333;
+      }
+      .stat {
+        top: 1rem;
+        position: relative;
+        background-color: #444;
+        padding: 15px;
+        margin: 3px;
+        border-radius: 8px;
+        flex: 1 1 40%;
+        text-align: center;
+      }
+      .stat h3 {
+        color: #ffcc00;
+        margin-bottom: 10px;
+      }
+      .stat p {
+        color: white;
+        font-size: 16px;
+      }
+      .icon {
+        margin-right: 8px;
+      }
+      .stats {
+        top: 1rem;
+        position: relative;
+        width: auto;
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="score-board" id="score-board"></div>
+
+    <script>
+      const data = {
+        5711: {
+          id: "5711",
+          name: "National Super League 4-Day Tournament - Test",
+          batsmanstats: {
+            batsman_0: { batsmanname: "RK Chandraguptha", run: "83" },
+            batsman_1: { batsmanname: "KPNM Karunanayake", run: "61" },
+            battingscore: "209 ( 63 )",
+            battingwicket: "2",
+            teamname: "Jaffna",
+          },
+          bowlerstats: {
+            bowler: "Nuwanidu Fernando",
+            o: "3",
+            m: "1",
+            r: "3",
+            w: "0",
+            teamname: "Colombo",
+          },
+        },
+      };
+
+      const renderData = (data) => {
+        const scoreBoard = document.getElementById("score-board");
+        scoreBoard.innerHTML = ""; // Clear existing content
+
+        Object.values(data).forEach((matchData) => {
+          const match = document.createElement("div");
+          match.classList.add("match");
+
+          // Team names and VS logo
+          const subContainer = document.createElement("div");
+          subContainer.classList.add("subconatiner");
+
+          const team1 = document.createElement("div");
+          team1.classList.add("team-name");
+          team1.innerHTML = `<h3>${matchData.bowlerstats.teamname}</h3>`;
+          subContainer.appendChild(team1);
+
+          const vsDiv = document.createElement("div");
+          vsDiv.classList.add("vs");
+          vsDiv.innerHTML = `<img alt="VS" src="./VS1-Photoroom.png" />`;
+          subContainer.appendChild(vsDiv);
+
+          const team2 = document.createElement("div");
+          team2.classList.add("team-name");
+          team2.innerHTML = `<h3>${matchData.batsmanstats.teamname}</h3>`;
+          subContainer.appendChild(team2);
+
+          match.appendChild(subContainer);
+
+          // Bowler Stats
+          const bowlerStat = document.createElement("div");
+          bowlerStat.classList.add("stat");
+          bowlerStat.innerHTML = `
+            <h3><i class="fas fa-bowling-ball icon"></i> Bowler Stats</h3>
+            <table class="stat-table">
+              <thead>
+                <tr>
+                  <th>Bowler</th>
+                  <th>Team</th>
+                  <th>Overs</th>
+                  <th>Maidens</th>
+                  <th>Runs</th>
+                  <th>Wickets</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>${matchData.bowlerstats.bowler}</td>
+                  <td>${matchData.bowlerstats.teamname}</td>
+                  <td>${matchData.bowlerstats.o}</td>
+                  <td>${matchData.bowlerstats.m}</td>
+                  <td>${matchData.bowlerstats.r}</td>
+                  <td>${matchData.bowlerstats.w}</td>
+                </tr>
+              </tbody>
+            </table>`;
+          match.appendChild(bowlerStat);
+
+          // Batsman Stats
+          const statsContainer = document.createElement("div");
+          statsContainer.classList.add("stats");
+
+          Object.entries(matchData.batsmanstats).forEach(([key, batsman]) => {
+            if (key.startsWith("batsman_")) {
+              const batsmanStat = document.createElement("div");
+              batsmanStat.classList.add("stat");
+              batsmanStat.innerHTML = `
+                <h3><i class="fas fa-user icon"></i> ${batsman.batsmanname}</h3>
+                <p><i class="fas fa-chart-line icon"></i> Runs: ${batsman.run}</p>`;
+              statsContainer.appendChild(batsmanStat);
+            }
+          });
+
+          match.appendChild(statsContainer);
+
+          scoreBoard.appendChild(match);
+        });
+      };
+
+      renderData(data);
+    </script>
+  </body>
+</html>

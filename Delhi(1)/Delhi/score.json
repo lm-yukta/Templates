@@ -1,0 +1,54 @@
+{
+  "5711": {
+    "id": "5711",
+    "name": "National Super League 4-Day Tournament - Test",
+    "batsmanstats": {
+      "batsman_0": {
+        "batsmanname": "RK Chandraguptha",
+        "run": "83"
+      },
+      "batsman_1": {
+        "batsmanname": "KPNM Karunanayake",
+        "run": "61"
+      },
+      "battingscore": "209 ( 63 )",
+      "battingwicket": "2",
+      "teamname": "Jaffna"
+    },
+    "bowlerstats": {
+      "bowler": "Nuwanidu Fernando",
+      "o": "3",
+      "m": "1",
+      "r": "3",
+      "w": "0",
+      "teamname": "Colombo"
+    }
+  },
+  "7049": {
+    "id": "7049",
+    "name": "Koshi Province Trophy (KPT) National T20 Cricket Tournament - T20",
+    "batsmanstats": {
+      "batsman_0": {
+        "batsmanname": "Rohan Bk",
+        "run": "5"
+      },
+      "batsman_1": {
+        "batsmanname": "D Nath",
+        "run": "2"
+      },
+      "battingscore": "8 ( 0.4 )",
+      "battingwicket": "0",
+      "teamname": "Nepal Police Club"
+    },
+    "bowlerstats": {
+      "bowler": "Dipesh Shrestha",
+      "o": "0.4",
+      "m": "0",
+      "r": "8",
+      "w": "0",
+      "bowlerstatsscore": "173 ( 20 )",
+      "bowlerstatswicket": "7",
+      "teamname": "Bagmati Province"
+    }
+  }
+}
