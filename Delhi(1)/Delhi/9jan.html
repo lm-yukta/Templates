@@ -1,0 +1,300 @@
+
+<!-- working properly without wicket   -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket Stats</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-image: url("./Cricket_BGT_Demo.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+        overflow: hidden;
+      }
+      .score-board {
+        border-radius: 15px;
+        width: 42%;
+        position: relative;
+        top: 20%;
+        right: 28%;
+      }
+      h1 {
+        color: #ffcc00;
+        margin-bottom: 20px;
+      }
+      .match {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 40px;
+        border-radius: 10px;
+      }
+      .subcontainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .team-name {
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.5rem;
+        text-align: center;
+        flex: 1;
+      }
+      .vs img {
+        width: 80px;
+        height: auto;
+      }
+      .stat-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #2a2a2a;
+        color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 20px 0;
+      }
+      .stat-table th,
+      .stat-table td {
+        padding: 12px;
+        text-align: left;
+        font-size: 1rem;
+      }
+      .stat-table th {
+        background-color: #1a1a1a;
+        color: #ffcc00;
+      }
+      .stat-table tr:nth-child(even) {
+        background-color: #333;
+      }
+      .stat {
+        background-color: #444;
+        padding: 15px;
+        margin: 8px;
+        border-radius: 8px;
+        flex: 1 1 40%;
+        text-align: left;
+      }
+      .stat h3 {
+        color: #ffcc00;
+        margin-bottom: 10px;
+      }
+      .score {
+        display: flex;
+        justify-content: space-between;
+        background-color: #444;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="score-board" id="score-board"></div>
+
+    <script>
+    //   let data = {
+    //     5711: {
+    //       id: "5711",
+    //       name: "National Super League 4-Day Tournament - Test",
+    //       batsmanstats: {
+    //         batsman_0: {
+    //           batsmanname: "RK Chandraguptha",
+    //           run: 0,
+    //           balls: 0,
+    //           fours: 0,
+    //           sixes: 0,
+    //         },
+    //         batsman_1: {
+    //           batsmanname: "KPNM Karunanayake",
+    //           run: 0,
+    //           balls: 0,
+    //           fours: 0,
+    //           sixes: 0,
+    //         },
+    //         teamname: "Jaffna",
+    //         currentStriker:"batsman_0"
+    //       },
+    //       bowlerstats: {
+    //         bowler: "Nuwanidu Fernando",
+    //         teamname: "Colombo",
+    //         overs: 0,
+    //         ballsBowled: 0,
+    //         runs: 0,
+    //         wickets: 0,
+    //       },
+    //       totalScore: "0 / 0",
+    //     },
+    //   };
+
+    let data = [
+    {
+      over: 7.1,
+      ball: 1,
+      bowler: "Pat Cummins",
+      batsman: "Yashasvi Jaiswal",
+      runs: 4,
+      score: "16 (18)",
+      partner: "KL Rahul",
+    },
+    {
+      over: 7.2,
+      ball: 2,
+      bowler: "Pat Cummins",
+      batsman: "Yashasvi Jaiswal",
+      runs: 0,
+      score: "16 (19)",
+      partner: "KL Rahul",
+    },
+    {
+      over: 7.3,
+      ball: 3,
+      bowler: "Pat Cummins",
+      batsman: "Yashasvi Jaiswal",
+      runs: 1,
+      score: "17 (20)",
+      partner: "KL Rahul",
+    },
+    {
+      over: 7.4,
+      ball: 4,
+      bowler: "Pat Cummins",
+      batsman: "KL Rahul",
+      runs: 0,
+      score: "9 (18)",
+      partner: "Jaiswal",
+    },
+    {
+      over: 7.5,
+      ball: 5,
+      bowler: "Pat Cummins",
+      batsman: "KL Rahul",
+      runs: 4,
+      score: "13 (19)",
+      partner: "Jaiswal",
+    },
+    {
+      over: 7.6,
+      ball: 6,
+      bowler: "Pat Cummins",
+      batsman: "KL Rahul",
+      runs: 0,
+      score: "13 (20)",
+      partner: "Jaiswal",
+    },
+  ];
+  
+    let ballIndex = 0;
+
+  const renderData = (data) => {
+    const scoreBoard = document.getElementById("score-board");
+    scoreBoard.innerHTML = ""; // Clear existing content
+
+    // Create Match Container
+    const match = document.createElement("div");
+    match.classList.add("match");
+
+    // Team names and VS logo
+    const subContainer = document.createElement("div");
+    subContainer.classList.add("subcontainer");
+
+    const team1 = document.createElement("div");
+    team1.classList.add("team-name");
+    team1.innerHTML = `<h3>Team 1</h3>`;
+    subContainer.appendChild(team1);
+
+    const vsDiv = document.createElement("div");
+    vsDiv.classList.add("vs");
+    vsDiv.innerHTML = `<img alt="VS" src="./VS1-Photoroom.png" />`;
+    subContainer.appendChild(vsDiv);
+
+    const team2 = document.createElement("div");
+    team2.classList.add("team-name");
+    team2.innerHTML = `<h3>Team 2</h3>`;
+    subContainer.appendChild(team2);
+
+    match.appendChild(subContainer);
+
+    // Batsman Stats Table
+    const batsmanStat = document.createElement("div");
+    batsmanStat.classList.add("stat");
+    batsmanStat.innerHTML = `
+      <div class="score">
+        <h2><i class="fas fa-bat icon"></i> Team 1</h2>
+        <h2>Total Score : 0</h2>
+      </div>
+      <table class="stat-table">
+        <thead>
+          <tr>
+            <th>Batsman</th>
+            <th>Runs</th>
+            <th>Balls</th>
+            <th>4s</th>
+            <th>6s</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>${data[ballIndex].batsman}</td>
+            <td>${data[ballIndex].runs}</td>
+            <td>${data[ballIndex].ball}</td>
+            <td>${Math.floor(Math.random() * 5)}</td>
+            <td>${Math.floor(Math.random() * 3)}</td>
+          </tr>
+        </tbody>
+      </table>`;
+    match.appendChild(batsmanStat);
+
+    // Bowler Stats Table
+    const bowlerStat = document.createElement("div");
+    bowlerStat.classList.add("stat");
+    bowlerStat.innerHTML = `
+      <table class="stat-table">
+        <thead>
+          <tr>
+            <th>Bowler</th>
+            <th>Overs</th>
+            <th>Runs</th>
+            <th>Wickets</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>${data[ballIndex].bowler}</td>
+            <td>${Math.floor(Math.random() * 10)}</td>
+            <td>${Math.floor(Math.random() * 20)}</td>
+            <td>${Math.floor(Math.random() * 5)}</td>
+          </tr>
+        </tbody>
+      </table>`;
+    match.appendChild(bowlerStat);
+
+    scoreBoard.appendChild(match);
+  };
+
+  // Call renderData to render the table
+  renderData(data);
+
+</script>
+
+
+
+
+  </body>
+</html>
