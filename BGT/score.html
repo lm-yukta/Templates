@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket Stats</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-image: url("./Cricket_BGT_Demo.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+        overflow: hidden;
+      }
+      .score-board {
+        border-radius: 15px;
+        width: 42%;
+        position: relative;
+        top: 20%;
+        right: 28%;
+      }
+      h1 {
+        color: #ffcc00;
+        margin-bottom: 20px;
+      }
+      .match {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 40px;
+        border-radius: 10px;
+      }
+      .subcontainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .team-name {
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.5rem;
+        text-align: center;
+        flex: 1;
+      }
+      .vs img {
+        width: 80px;
+        height: auto;
+      }
+      .stat-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #2a2a2a;
+        color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 20px 0;
+      }
+      .stat-table th,
+      .stat-table td {
+        padding: 12px;
+        text-align: left;
+        font-size: 1rem;
+      }
+      .stat-table th {
+        background-color: #1a1a1a;
+        color: #ffcc00;
+      }
+      .stat-table tr:nth-child(even) {
+        background-color: #333;
+      }
+      .stat {
+        background-color: #444;
+        padding: 15px;
+        margin: 8px;
+        border-radius: 8px;
+        flex: 1 1 40%;
+        text-align: left;
+      }
+      .stat h3 {
+        color: #ffcc00;
+        margin-bottom: 10px;
+      }
+      .score {
+        display: flex;
+        justify-content: space-between;
+        background-color: #444;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="score-board" id="score-board"></div>
+
+    <script>
+      var score_data = [
+        {
+          total_score: "25",
+          bowler_name: "Mitchell Starc",
+          over: 6.6,
+          wicket: "1",
+          runs: "11",
+          batsman_1: {
+            name: "Yashasvi Jaiswal",
+            run: "12",
+            ball: "18",
+            fours: "1",
+            sixes: "0",
+            current_srtiker: false,
+          },
+          batsman_2: {
+            name: "KL Rahul",
+            run: "9",
+            ball: "18",
+            fours: "0",
+            sixes: "0",
+            current_srtiker: true,
+          },
+        },
+        {
+          total_score: "29",
+          bowler_name: "Pat Cummins",
+          over: 7.1,
+          wicket: "1",
+          runs: "4",
+          batsman_1: {
+            name: "Yashasvi Jaiswal",
+            run: "16",
+            ball: "18",
+            fours: "1",
+            sixes: "0",
+            current_srtiker: true,
+          },
+          batsman_2: {
+            name: "KL Rahul",
+            run: "9",
+            ball: "18",
+            fours: "0",
+            sixes: "0",
+            current_srtiker: false,
+          },
+        },
+        {
+          total_score: "29",
+          bowler_name: "Pat Cummins",
+          over: 7.2,
+          wicket: "1",
+          runs: "4",
+          batsman_1: {
+            name: "Yashasvi Jaiswal",
+            run: "16 ",
+            ball: "19",
+            fours: "1",
+            sixes: "0",
+            current_srtiker: true,
+          },
+          batsman_2: {
+            name: "KL Rahul",
+            run: "9",
+            ball: "18",
+            fours: "0",
+            sixes: "0",
+            current_srtiker: false,
+          },
+        },
+        {
+          total_score: "30",
+          bowler_name: "Pat Cummins",
+          over: 7.3,
+          wicket: "1",
+          runs: "5",
+          batsman_1: {
+            name: "Yashasvi Jaiswal",
+            run: "17",
+            ball: "20",
+            fours: "1",
+            sixes: "0",
+            current_srtiker: true,
+          },
+          batsman_2: {
+            name: "KL Rahul",
+            run: "9",
+            ball: "18",
+            fours: "0",
+            sixes: "0",
+            current_srtiker: false,
+          },
+        },
+        {
+          total_score: "30",
+          bowler_name: "Pat Cummins",
+          over: 7.4,
+          wicket: "1",
+          runs: "5",
+          batsman_1: {
+            name: "Yashasvi Jaiswal",
+            run: "17",
+            ball: "20",
+            fours: "1",
+            sixes: "0",
+            current_srtiker: false,
+          },
+          batsman_2: {
+            name: "KL Rahul",
+            run: "9",
+            ball: "18",
+            fours: "0",
+            sixes: "0",
+            current_srtiker: true,
+          },
+        },
+        {
+          total_score: "34",
+          bowler_name: "Pat Cummins",
+          over: 7.5,
+          wicket: "1",
+          runs: "9",
+          batsman_1: {
+            name: "Yashasvi Jaiswal",
+            run: "17",
+            ball: "20",
+            fours: "1",
+            sixes: "0",
+            current_srtiker: false,
+          },
+          batsman_2: {
+            name: "KL Rahul",
+            run: "13",
+            ball: "19",
+            fours: "1",
+            sixes: "0",
+            current_srtiker: true,
+          },
+        },
+        {
+          total_score: "34",
+          bowler_name: "Pat Cummins",
+          over: 7.6,
+          wicket: "1",
+          runs: "9",
+          batsman_1: {
+            name: "Yashasvi Jaiswal",
+            run: "17",
+            ball: "20",
+            fours: "1",
+            sixes: "0",
+            current_srtiker: false,
+          },
+          batsman_2: {
+            name: "KL Rahul",
+            run: "13",
+            ball: "20",
+            fours: "1",
+            sixes: "0",
+            current_srtiker: true,
+          },
+        },
+      ];
+      const renderData = entry => {
+        const scoreBoard = document.getElementById("score-board");
+        scoreBoard.innerHTML = "";
+        const match = document.createElement("div");
+        match.classList.add("match");
+
+        const subContainer = document.createElement("div");
+        subContainer.classList.add("subcontainer");
+
+        const team1 = document.createElement("div");
+        team1.classList.add("team-name");
+        team1.innerHTML = `<h3>India</h3>`;
+        subContainer.appendChild(team1);
+
+        const vsDiv = document.createElement("div");
+        vsDiv.classList.add("vs");
+        vsDiv.innerHTML = `<img alt="VS" src="./VS1-Photoroom.png" />`;
+        subContainer.appendChild(vsDiv);
+
+        const team2 = document.createElement("div");
+        team2.classList.add("team-name");
+        team2.innerHTML = `<h3>Australia</h3>`;
+        subContainer.appendChild(team2);
+
+        match.appendChild(subContainer);
+
+        // Batsman Stats Table
+        const batsmanStat = document.createElement("div");
+        batsmanStat.classList.add("stat");
+        const uniqueBatsmen = new Set();
+
+        let batsman_1 = entry.batsman_1;
+        let batsman_2 = entry.batsman_2;
+        const batsmanRows_1 = ` <tr>
+                <td> ${
+                  batsman_1.current_srtiker
+                    ? '<i class="fas fa-baseball-bat-ball"></i>&nbsp;'
+                    : ""
+                } ${batsman_1.name}</td>
+                <td>${batsman_1.run}</td>
+                <td>${batsman_1.ball}</td>
+                <td>${batsman_1.fours}</td>
+                <td>${batsman_1.sixes}</td>
+              </tr>
+            `;
+        const batsmanRows_2 = ` <tr>
+               <td>${
+                 batsman_2.current_srtiker
+                   ? '<i class="fas fa-baseball-bat-ball"></i>&nbsp;'
+                   : ""
+               } ${batsman_2.name}</td>
+                <td>${batsman_2.run}</td>
+                <td>${batsman_2.ball}</td>
+                <td>${batsman_2.fours}</td>
+                <td>${batsman_2.sixes}</td>
+              </tr>
+            `;
+        const bowlerRows = ` <tr>
+              <td>${entry.bowler_name}</td>
+            <td>${entry.over}</td>
+            <td>${entry.runs}</td>
+            <td>${entry.wicket}</td>
+            </tr>`;
+        batsmanStat.innerHTML = `
+          <div class="score">
+            <h2><i class="fas fa-bat icon"></i> India</h2>
+            <h2>Total Score : ${entry.total_score} -  ${entry.wicket}</h2>
+          </div>
+          <table class="stat-table">
+            <thead>
+              <tr>
+                <th>Batsman</th>
+                <th>Runs</th>
+                <th>Balls</th>
+                <th>4s</th>
+                <th>6s</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${batsmanRows_1}
+              ${batsmanRows_2}
+            </tbody>
+          </table>`;
+        match.appendChild(batsmanStat);
+
+        // Bowler Stats Table
+        const bowlerStat = document.createElement("div");
+        bowlerStat.classList.add("stat");
+        bowlerStat.innerHTML = `
+          <table class="stat-table">
+            <thead>
+              <tr>
+                <th>Bowler</th>
+                <th>Overs</th>
+                <th>Runs</th>
+                <th>Wickets</th>
+              </tr>
+            </thead>
+            <tbody>
+             ${bowlerRows}
+            </tbody>
+          </table>`;
+        match.appendChild(bowlerStat);
+
+        scoreBoard.appendChild(match);
+      };
+      console.log(score_data);
+      index = 0;
+      renderData(score_data[index]);
+      var interval = setInterval(() => {
+        if (index < score_data.length) {
+          index == 0;
+        }
+        index++;
+        renderData(score_data[index]);
+      }, 30000);
+      renderData(score_data[index]);
+      
+    </script>
+  </body>
+</html>
