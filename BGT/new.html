@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Score Table</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: url('./Cricket_BGT_Demo.jpg') no-repeat center center/cover;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+
+        th, td {
+            border: 1px solid white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Cricket Score Table</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Over</th>
+                <th>Total Score</th>
+                <th>Wickets</th>
+                <th>Runs</th>
+                <th>Bowler</th>
+                <th>Batsman 1</th>
+                <th>Batsman 1 Stats</th>
+                <th>Batsman 2</th>
+                <th>Batsman 2 Stats</th>
+            </tr>
+        </thead>
+        <tbody id="scoreTableBody"></tbody>
+    </table>
+
+    <script>
+        const score_data = [
+            {
+                total_score: "25",
+                bowler_name: "Mitchell Starc",
+                over: 6.6,
+                wicket: "1",
+                runs: "11",
+                batsman_1: {
+                    name: "Yashasvi Jaiswal",
+                    run: "12",
+                    ball: "18",
+                    fours: "1",
+                    sixes: "0",
+                    current_srtiker: false,
+                },
+                batsman_2: {
+                    name: "KL Rahul",
+                    run: "9",
+                    ball: "18",
+                    fours: "0",
+                    sixes: "0",
+                    current_srtiker: true,
+                },
+            },
+            {
+                total_score: "29",
+                bowler_name: "Pat Cummins",
+                over: 7.1,
+                wicket: "1",
+                runs: "4",
+                batsman_1: {
+                    name: "Yashasvi Jaiswal",
+                    run: "16",
+                    ball: "18",
+                    fours: "1",
+                    sixes: "0",
+                    current_srtiker: true,
+                },
+                batsman_2: {
+                    name: "KL Rahul",
+                    run: "9",
+                    ball: "18",
+                    fours: "0",
+                    sixes: "0",
+                    current_srtiker: false,
+                },
+            },
+            {
+                total_score: "29",
+                bowler_name: "Pat Cummins",
+                over: 7.2,
+                wicket: "1",
+                runs: "4",
+                batsman_1: {
+                    name: "Yashasvi Jaiswal",
+                    run: "16 ",
+                    ball: "19",
+                    fours: "1",
+                    sixes: "0",
+                    current_srtiker: true,
+                },
+                batsman_2: {
+                    name: "KL Rahul",
+                    run: "9",
+                    ball: "18",
+                    fours: "0",
+                    sixes: "0",
+                    current_srtiker: false,
+                },
+            },
+            {
+                total_score: "30",
+                bowler_name: "Pat Cummins",
+                over: 7.3,
+                wicket: "1",
+                runs: "5",
+                batsman_1: {
+                    name: "Yashasvi Jaiswal",
+                    run: "17",
+                    ball: "20",
+                    fours: "1",
+                    sixes: "0",
+                    current_srtiker: true,
+                },
+                batsman_2: {
+                    name: "KL Rahul",
+                    run: "9",
+                    ball: "18",
+                    fours: "0",
+                    sixes: "0",
+                    current_srtiker: false,
+                },
+            },
+            {
+                total_score: "30",
+                bowler_name: "Pat Cummins",
+                over: 7.4,
+                wicket: "1",
+                runs: "5",
+                batsman_1: {
+                    name: "Yashasvi Jaiswal",
+                    run: "17",
+                    ball: "20",
+                    fours: "1",
+                    sixes: "0",
+                    current_srtiker: false,
+                },
+                batsman_2: {
+                    name: "KL Rahul",
+                    run: "9",
+                    ball: "18",
+                    fours: "0",
+                    sixes: "0",
+                    current_srtiker: true,
+                },
+            },
+            {
+                total_score: "34",
+                bowler_name: "Pat Cummins",
+                over: 7.5,
+                wicket: "1",
+                runs: "9",
+                batsman_1: {
+                    name: "Yashasvi Jaiswal",
+                    run: "17",
+                    ball: "20",
+                    fours: "1",
+                    sixes: "0",
+                    current_srtiker: false,
+                },
+                batsman_2: {
+                    name: "KL Rahul",
+                    run: "13",
+                    ball: "19",
+                    fours: "1",
+                    sixes: "0",
+                    current_srtiker: true,
+                },
+            },
+            {
+                total_score: "34",
+                bowler_name: "Pat Cummins",
+                over: 7.6,
+                wicket: "1",
+                runs: "9",
+                batsman_1: {
+                    name: "Yashasvi Jaiswal",
+                    run: "17",
+                    ball: "20",
+                    fours: "1",
+                    sixes: "0",
+                    current_srtiker: false,
+                },
+                batsman_2: {
+                    name: "KL Rahul",
+                    run: "13",
+                    ball: "20",
+                    fours: "1",
+                    sixes: "0",
+                    current_srtiker: true,
+                },
+            },
+        ];
+
+        const tableBody = document.getElementById('scoreTableBody');
+
+        score_data.forEach(data => {
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${data.over}</td>
+                <td>${data.total_score}</td>
+                <td>${data.wicket}</td>
+                <td>${data.runs}</td>
+                <td>${data.bowler_name}</td>
+                <td>${data.batsman_1.name}</td>
+                <td>Runs: ${data.batsman_1.run}, Balls: ${data.batsman_1.ball}, Fours: ${data.batsman_1.fours}, Sixes: ${data.batsman_1.sixes}</td>
+                <td>${data.batsman_2.name}</td>
+                <td>Runs: ${data.batsman_2.run}, Balls: ${data.batsman_2.ball}, Fours: ${data.batsman_2.fours}, Sixes: ${data.batsman_2.sixes}</td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
