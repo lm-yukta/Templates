@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Times Now News</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <section class="times-now-news-landscape">
+        <div class="container">
+            <div class="news-header">
+                <div class="news-heading" id="newsHeading">Business News</div>
+                <div class="channel-info">
+                    <span><img src="../times-now-sports-news/timesSports.png" alt="Times Now"></span>
+                </div>
+            </div>
+            <div class="news-container">
+                <div class="news-img">
+                    <img id="newsImage" src="" alt="">
+                </div>
+                <div class="news-content">
+                    <p id="newsTitle"></p>
+                </div>
+            </div>
+            <div class="footer"></div>
+        </div>
+    </section>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch(`https://media.lemmatechnologies.com/media/times/business.json`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data[0] && data[0].items[0]) {
+                        document.getElementById("newsImage").src = data[0].items[0].image;
+                        document.getElementById("newsTitle").textContent = data[0].items[0].title;
+                    }
+                })
+                .catch(error => console.error("Error fetching sports news:", error));
+        });
+    </script>
+    </script>
+</body>
+</html>
