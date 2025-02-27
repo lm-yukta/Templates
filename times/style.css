@@ -81,11 +81,7 @@
 }
   
   /* Responsive Adjustments */
-<<<<<<< HEAD
-  @media screen and  (max-width: 1024px) {
-=======
   @media screen and (max-width: 1024px) {
->>>>>>> changs css
     main {
       flex-direction: row;
     }
