@@ -81,7 +81,7 @@
 }
   
   /* Responsive Adjustments */
-  @media screen and (max-width: 1024px) {
+  @media screen and  (max-width: 1024px) {
     main {
       flex-direction: row;
     }
