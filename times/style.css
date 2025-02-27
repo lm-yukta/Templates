@@ -55,7 +55,6 @@
   
   .right-section {
     width: 55%;
-    padding: 20px;
   }
 
   .news-img {
@@ -101,21 +100,29 @@
       align-items: center;
     }
     .left-section {
-      width: 45%;
+      width: 42%;
+    }
+    .right-section{
+      width: 58%;
     }
     .news-content p {
-        font-size: 11vh;
+        font-size: 9vh;
+        padding: 10px;
     }
   }
-  @media screen and (max-width:960px) {
+  @media screen and (min-width: 769px) and (max-width: 960px) {
     main{
         flex-direction: row;
     }  
-    .left-section{
-        width:40%
-    } 
+    .left-section {
+      width: 42%;
+    }
+    .right-section{
+      width: 58%;
+    }
     .news-content p {
-        font-size: 11vh;
+        font-size: 9vh;
+        padding: 10px;
     }
   }
   
