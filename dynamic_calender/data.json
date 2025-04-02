@@ -1,0 +1,320 @@
+{
+    "holidays": [
+      {
+        "Jan": [
+          {
+            "holiday": "New Year's Day",
+            "date": "01 January",
+            "day": "Wednesday"
+          },
+          {
+            "holiday": "Republic Day",
+            "date": "26 January",
+            "day": ""
+          },
+          {
+            "moon_phase": "🌑",
+            "moon_date": "10 January"
+          },
+          {
+            "moon_phase": "🌓",
+            "moon_date": "17 January"
+          },
+          {
+            "moon_phase": "🌕",
+            "moon_date": "24 January"
+          },
+          {
+            "moon_phase": "🌗",
+            "moon_date": "31 January"
+          }
+        ],
+        "Feb": [
+          {
+            "moon_phase": "🌑",
+            "moon_date": "09 February"
+          },
+          {
+            "moon_phase": "🌓",
+            "moon_date": "16 February"
+          },
+          {
+            "moon_phase": "🌕",
+            "moon_date": "23 February"
+          },
+          {
+            "moon_phase": "🌗",
+            "moon_date": "02 March"
+          }
+        ],
+        "Mar": [
+          {
+            "holiday": "Holi",
+            "date": "14 March",
+            "day": "Friday"
+          },
+          {
+            "moon_phase": "🌑",
+            "moon_date": "29 March"
+          },
+          {
+            "moon_phase": "🌓",
+            "moon_date": "06 March"
+          },
+          {
+            "moon_phase": "🌕",
+            "moon_date": "14 March"
+          },
+          {
+            "moon_phase": "🌗",
+            "moon_date": "22 March"
+          }
+        ],
+        "Apr": [
+          {
+            "holiday": "Good Friday",
+            "date": "18 April",
+            "day": "Friday"
+          },
+          {
+            "holiday": "Easter Monday",
+            "date": "21 April",
+            "day": "Monday"
+          },
+          {
+            "moon_phase": "🌑",
+            "moon_date": "27 April"
+          },
+          {
+            "moon_phase": "🌓",
+            "moon_date": "04 April"
+          },
+          {
+            "moon_phase": "🌕",
+            "moon_date": "12 April"
+          },
+          {
+            "moon_phase": "🌗",
+            "moon_date": "20 April"
+          }
+        ],
+        "May": [
+          {
+            "holiday": "Buddha Purnima",
+            "date": "12 May",
+            "day": "Monday"
+          },
+          {
+            "moon_phase": "🌑",
+            "moon_date": "26 May"
+          },
+          {
+            "moon_phase": "🌓",
+            "moon_date": "04 May"
+          },
+          {
+            "moon_phase": "🌕",
+            "date": "12 May"
+          },
+          {
+            "moon_phase": "🌗",
+            "moon_date": "20 May"
+          }
+        ],
+        "Jun": [
+          {
+            "holiday": "Id-ul-Zuha(Bakra)",
+            "date": "07 June",
+            "day": "Saturday"
+          },
+          {
+            "holiday": "Whit Monday",
+            "date": "09 June",
+            "day": "Monday"
+          },
+          {
+            "holiday": "Rath Yatra",
+            "date": "27 June",
+            "day": "Friday"
+          },
+          {
+            "moon_phase": "🌑",
+            "moon_date": "25 June"
+          },
+          {
+            "moon_phase": "🌓",
+            "moon_date": "02 June"
+          },
+          {
+            "moon_phase": "🌕",
+            "moon_date": "11 June"
+          },
+          {
+            "moon_phase": "🌗",
+            "moon_date": "18 June"
+          }
+        ],
+        "Jul": [
+          {
+            "holiday": "Muharram",
+            "date": "06 July",
+            "day": "Sunday"
+          },
+          {
+            "moon_phase": "🌑",
+            "moon_date": "24 July"
+          },
+          {
+            "moon_phase": "🌓",
+            "moon_date": "02 July"
+          },
+          {
+            "moon_phase": "🌕",
+            "moon_date": "10 July"
+          },
+          {
+            "moon_phase": "🌗",
+            "moon_date": "17 July"
+          }
+        ],
+        "Aug": [
+          {
+            "holiday": "Independence Day",
+            "date": "15 August",
+            "day": "Friday"
+          },
+          {
+            "holiday": "Janmastami",
+            "date": "16 August",
+            "day": "Saturday"
+          },
+          {
+            "moon_phase": "🌑",
+            "moon_date": "23 August"
+          },
+          {
+            "moon_phase": "🌓",
+            "moon_date": "01 August"
+          },
+          {
+            "moon_phase": "🌕",
+            "moon_date": "09 August"
+          },
+          {
+            "moon_phase": "🌗",
+            "moon_date": "16 August"
+          }
+        ],
+        "Sept": [
+          {
+            "holiday": "Id-e-Milad (Prophet Mohammad’s birthday)",
+            "date": "05 September",
+            "day": "Friday"
+          },
+          {
+            "moon_phase": "🌑",
+            "moon_date": "21 September"
+          },
+          {
+            "moon_phase": "🌓",
+            "moon_date": "29 September"
+          },
+          {
+            "moon_phase": "🌕",
+            "moon_date": "07 September"
+          },
+          {
+            "moon_phase": "🌗",
+            "moon_date": "14 September"
+          }
+        ],
+        "Oct": [
+          {
+            "holiday": "Mahatma Gandhi Birthday",
+            "date": "02 October",
+            "day": "Thursday"
+          },
+          {
+            "holiday": "Dusshera",
+            "date": "03 October",
+            "day": "Friday"
+          },
+          {
+            "moon_phase": "🌑",
+            "moon_date": "21 October"
+          },
+          {
+            "moon_phase": "🌓",
+            "moon_date": "29 October"
+          },
+          {
+            "moon_phase": "🌕",
+            "moon_date": "06 October"
+          },
+          {
+            "moon_phase": "🌗",
+            "moon_date": "13 October"
+          }
+        ],
+        "Nov": [
+          {
+            "holiday": "Diwali",
+            "date": "02 November",
+            "day": "Monday"
+          },
+          {
+            "holiday": "Guru Nanak’s Birthday",
+            "date": "20 November",
+            "day": "Wednesday"
+          },
+          {
+            "moon_phase": "🌑",
+            "moon_date": "20 November"
+          },
+          {
+            "moon_phase": "🌓",
+            "moon_date": "28 November"
+          },
+          {
+            "moon_phase": "🌕",
+            "moon_date": "05 November"
+          },
+          {
+            "moon_phase": "🌗",
+            "moon_date": "12 November"
+          }
+        ],
+        "Dec": [
+          {
+            "holiday": "Christmas",
+            "date": "25 December",
+            "day": "Thursday"
+          },
+          {
+            "moon_phase": "🌑",
+            "moon_date": "19 December"
+          },
+          {
+            "moon_phase": "🌓",
+            "moon_date": "27 December"
+          },
+          {
+            "moon_phase": "🌕",
+            "moon_date": "04 December"
+          },
+          {
+            "moon_phase": "🌗",
+            "moon_date": "11 December"
+          }
+        ]
+      }
+    ],
+    "moon_phases":{
+      "new": "🌑",
+      "first_quarter":"🌓",
+      "full": "🌕",
+      "second_quarter": "🌗"
+    }
+  }
+  
+  
