@@ -1,0 +1,56 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Page with Embedded Calendar</title>
+</head>
+<body>
+    <img src="https://sandbox.lemmatechnologies.com/media/1306/20250403121936-Media250403_174922_631.jpg" width="1151" height="975">
+    <iframe src="index.html" width="768" height="975" frameborder="0" style="border:1px solid #ccc;justify-content: left; display: flex;">
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page with Embedded Calendar</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            /* justify-content: center; */
+            gap: 20px;
+            /* padding: 20px; */
+        }
+
+        .container img {
+            width: 1151px;
+            height: 975px;
+            /* border: 1px solid #ccc; */
+        }
+        .container iframe{
+            width: 768px;
+            height: 975px;
+        }
+
+        /* Optional: constrain max size */
+        /* .container img {
+            max-width: 600px;
+        } */
+
+        .container iframe {
+            /* max-width: 768px; */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://sandbox.lemmatechnologies.com/media/1306/20250403121936-Media250403_174922_631.jpg" alt="Calendar Image">
+        <iframe src="index.html" frameborder="0"></iframe>
+    </div>
+</body>
+</html>
