@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Calendar</title>
+    <script src="data.json"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .left {
+            width: 60%;
+            background-color: lightblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        .right {
+            width: 40%;
+            background-color: lightgray;
+            padding: 10px;
+        }
+
+        .calendar {
+            width: 100%;
+            text-align: center;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            height: 100%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            border: 2px solid black;
+        }
+
+        .month {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        table {
+            width: 100%;
+            height: 85%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            width: 14%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+            position: relative;
+            font-size: x-large;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .today {
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        .holiday {
+            color: red;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .sunday {
+            color: red;
+            font-weight: bold;
+        }
+
+        .holiday:hover::after {
+            content: attr(data-name);
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+
+        .footer {
+            font-size: 14px;
+            /* padding: 10px; */
+            margin-top: 10px;
+            border-top: 1px solid #ccc;
+        }
+
+        .moon-phases {
+            padding: 5px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            background-color: #b6b6b6;
+        }
+
+        .holidays {
+            font-weight: bold;
+
+        }
+
+        .holidays span {
+            font-weight: normal;
+        }
+        .holidays span .moon{
+            color: black;
+        }
+
+        .holidays a {
+            text-decoration: none;
+        }
+
+        .red a {
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <h1>Creative Area</h1>
+        </div>
+        <div class="right">
+            <div class="calendar">
+                <div class="month" id="month-year"></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sun</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body"></tbody>
+                </table>
+                <div class="footer">
+                    <div class="moon-phases" id="moon-phases"></div>
+                    <div class="holidays" id="holiday-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchHolidayData() {
+            try{
+                const responce = await fetch("https://sandbox.lemmatechnologies.com/media/calender.json"); //nedd to add sandbox url of dummy json
+                if(!responce.ok) throw new Erroe ("failed to load data");
+                const data = await responce.json();
+                console.log("fetch holiday data : ",data);
+                return data;
+            } catch(error){
+                console.error("Error loading holiday : ",data);
+                return {holiday:{}};
+            }
+        }
+
+        async function generateCalendar() {
+            const today = new Date();
+            const monthYear = document.getElementById("month-year");
+            const calendarBody = document.getElementById("calendar-body");
+            const moonPhases = document.getElementById("moon-phases");
+            const holidayList = document.getElementById("holiday-list");
+
+            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const month = today.getMonth();
+            const year = today.getFullYear();
+            monthYear.innerText = `${monthNames[month]} ${year}`;
+
+            const holidayData = await fetchHolidayData();
+            console.log("Holiday Data Structure:", holidayData);
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            calendarBody.innerHTML = "";
+
+            let date = 1;
+            for (let i = 0; i < 6; i++) {
+                let row = document.createElement("tr");
+
+                for (let j = 0; j < 7; j++) {
+                    let cell = document.createElement("td");
+
+                    if (i === 0 && j < firstDay) {
+                        cell.innerText = "";
+                    } else if (date > daysInMonth) {
+                        break;
+                    } else {
+                        cell.innerText = date;
+                        let dateStr = `${date.toString().padStart(2, '0')} ${monthNames[month]}`;
+
+                        // Fetch the month's short name
+                        let monthShort = monthNames[month].slice(0, 3);
+                        console.log(`Checking holidays for month: ${monthShort}`);
+                        console.log("data----->",holidayData.holidays.monthShort)
+
+                        //extract holiday object
+                        const holidaysData = holidayData.holidays[0]; 
+                        let  holidaysForMonth = holidaysData[monthShort] || [];
+                        console.log("Holidays for this month:", holidaysForMonth);
+
+                        // Find holiday for this date
+                        let holiday = holidaysForMonth.find(h => h.date === dateStr);
+                        if (holiday) {
+                            cell.classList.add("holiday");
+                            cell.setAttribute("data-name", holiday.holiday);
+                        }
+
+                        // Highlight Sundays
+                        if (j === 0) {
+                            cell.classList.add("sunday");
+                        }
+
+                        // Highlight today's date
+                        if (date === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                            cell.classList.add("today");
+                        }
+
+                        date++;
+                    }
+                    row.appendChild(cell);
+                }
+                calendarBody.appendChild(row);
+            }
+            // Display moon phases and holidays in footer
+            let monthShort = monthNames[month].slice(0, 3);
+            const holidaysData = holidayData.holidays[0]; 
+            let  holidaysForMonth = holidaysData[monthShort] || [];
+
+            moonPhases.innerHTML = "<strong> Phases of the Moon:</strong> " +
+                (holidaysForMonth
+                    .filter(h => h.moon_phase)
+                    .map(h => `<span class="moon">${h.moon_date} - ${h.moon_phase}</span>`)
+                    .join(", ") || "No Data");
+
+            holidayList.innerHTML = "<strong>Holidays And Observances : </strong> " +
+                (holidaysForMonth
+                    .filter(h => h.holiday)
+                    .map(h => `<span class="red">${h.date}: <a href="#">${h.holiday}</a></span>`)
+                    .join(", ") || "No Holidays");
+        }
+
+        generateCalendar();
+    </script>
+</body>
+</html>

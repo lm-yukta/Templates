@@ -1,0 +1,318 @@
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cricket Board</title>
+        <link rel="stylesheet" href="18april.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="scoreboard">
+                <h2>Live Scoreboard (60%)</h2>
+            </div>
+            <div class="point-table">
+                <h2>Points Table (40%)</h2>
+            </div>
+        </div>
+    </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL 2024 Points Table</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .ipl-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .ipl-header {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .ipl-header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #f7b733;
+        }
+
+        .ipl-header h2 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .points-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .points-table thead {
+            background-color: #16213e;
+            color: white;
+        }
+
+        .points-table th {
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .points-table td {
+            padding: 12px 8px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: 500;
+        }
+
+        .points-table tbody tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+
+        .team-cell {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            padding-left: 15px;
+        }
+
+        .team-logo {
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
+        }
+
+        .team-name {
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .positive-nrr {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        .negative-nrr {
+            color: #c62828;
+            font-weight: 600;
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+
+        @media (max-width: 600px) {
+            .points-table th, .points-table td {
+                padding: 8px 4px;
+                font-size: 12px;
+            }
+            
+            .team-cell {
+                padding-left: 5px;
+                gap: 5px;
+            }
+            
+            .team-logo {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ipl-container">
+        <div class="ipl-header">
+            <h1>TATA IPL 2024</h1>
+            <h2>POINTS TABLE</h2>
+        </div>
+        <table class="points-table">
+            <thead>
+                <tr>
+                    <th>Teams</th>
+                    <th>Pld</th>
+                    <th>Won</th>
+                    <th>Lost</th>
+                    <th>NRR</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Teams will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const teamsData = [
+            {
+                name: "Kolkata Knight Riders",
+                shortName: "KKR",
+                logo: "https://upload.wikimedia.org/wikipedia/en/4/4c/Kolkata_Knight_Riders_Logo.svg",
+                played: 2,
+                won: 2,
+                lost: 0,
+                nrr: 1.047,
+                points: 4
+            },
+            {
+                name: "Rajasthan Royals",
+                shortName: "RR",
+                logo: "https://upload.wikimedia.org/wikipedia/en/6/60/Rajasthan_Royals_Logo.svg",
+                played: 3,
+                won: 2,
+                lost: 1,
+                nrr: 0.976,
+                points: 4
+            },
+            {
+                name: "Chennai Super Kings",
+                shortName: "CSK",
+                logo: "https://upload.wikimedia.org/wikipedia/en/2/2b/Chennai_Super_Kings_Logo.svg",
+                played: 2,
+                won: 2,
+                lost: 0,
+                nrr: 0.800,
+                points: 4
+            },
+            {
+                name: "Sunrisers Hyderabad",
+                shortName: "SRH",
+                logo: "https://upload.wikimedia.org/wikipedia/en/8/81/Sunrisers_Hyderabad.svg",
+                played: 3,
+                won: 2,
+                lost: 1,
+                nrr: -0.738,
+                points: 4
+            },
+            {
+                name: "Royal Challengers Bangalore",
+                shortName: "RCB",
+                logo: "https://upload.wikimedia.org/wikipedia/en/2/2a/Royal_Challengers_Bangalore_2020.svg",
+                played: 3,
+                won: 1,
+                lost: 2,
+                nrr: 0.204,
+                points: 2
+            },
+            {
+                name: "Delhi Capitals",
+                shortName: "DC",
+                logo: "https://upload.wikimedia.org/wikipedia/en/d/dc/Delhi_Capitals_Logo.svg",
+                played: 2,
+                won: 1,
+                lost: 1,
+                nrr: 0.025,
+                points: 2
+            },
+            {
+                name: "Punjab Kings",
+                shortName: "PBKS",
+                logo: "https://upload.wikimedia.org/wikipedia/en/d/d4/Punjab_Kings_Logo.svg",
+                played: 3,
+                won: 1,
+                lost: 2,
+                nrr: -0.016,
+                points: 2
+            },
+            {
+                name: "Mumbai Indians",
+                shortName: "MI",
+                logo: "https://upload.wikimedia.org/wikipedia/en/c/cd/Mumbai_Indians_Logo.svg",
+                played: 3,
+                won: 1,
+                lost: 2,
+                nrr: -0.337,
+                points: 2
+            },
+            {
+                name: "Lucknow Super Giants",
+                shortName: "LSG",
+                logo: "https://upload.wikimedia.org/wikipedia/en/a/a9/Lucknow_Super_Giants_IPL_Logo.svg",
+                played: 3,
+                won: 1,
+                lost: 2,
+                nrr: -0.711,
+                points: 2
+            }
+        ];
+
+        // Sort teams by points (descending) and NRR (descending)
+        const sortedTeams = [...teamsData].sort((a, b) => {
+            if (b.points !== a.points) return b.points - a.points;
+            return b.nrr - a.nrr;
+        });
+
+        // Populate the table
+        const tableBody = document.getElementById('table-body');
+        
+        sortedTeams.forEach((team, index) => {
+            const row = document.createElement('tr');
+            
+            // Team name with logo
+            const teamCell = document.createElement('td');
+            teamCell.className = 'team-cell';
+            teamCell.innerHTML = `
+                <img src="${team.logo}" alt="${team.shortName}" class="team-logo">
+                <span class="team-name">${team.shortName}</span>
+            `;
+            
+            // Other cells
+            const playedCell = document.createElement('td');
+            playedCell.textContent = team.played;
+            
+            const wonCell = document.createElement('td');
+            wonCell.textContent = team.won;
+            
+            const lostCell = document.createElement('td');
+            lostCell.textContent = team.lost;
+            
+            const nrrCell = document.createElement('td');
+            nrrCell.textContent = team.nrr > 0 ? `+${team.nrr.toFixed(3)}` : team.nrr.toFixed(3);
+            nrrCell.className = team.nrr >= 0 ? 'positive-nrr' : 'negative-nrr';
+            
+            const pointsCell = document.createElement('td');
+            pointsCell.textContent = team.points;
+            if (team.points >= 4) {
+                pointsCell.classList.add('highlight');
+            }
+            
+            // Append all cells to the row
+            row.appendChild(teamCell);
+            row.appendChild(playedCell);
+            row.appendChild(wonCell);
+            row.appendChild(lostCell);
+            row.appendChild(nrrCell);
+            row.appendChild(pointsCell);
+            
+            // Append row to table
+            tableBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
